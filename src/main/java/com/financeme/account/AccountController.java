@@ -1,6 +1,7 @@
 package com.financeme.account;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,19 @@ public class AccountController {
 
     public AccountController(AccountRepository repository) {
         this.repository = repository;
+    }
+
+    @GetMapping("/")
+    public Map<String, Object> home() {
+        return Map.of(
+                "application", "FinanceMe",
+                "status", "running",
+                "endpoints", List.of(
+                        "POST /createAccount",
+                        "PUT /updateAccount/{accountNo}",
+                        "GET /viewPolicy/{accountNo}",
+                        "DELETE /deletePolicy/{accountNo}",
+                        "GET /accounts"));
     }
 
     @GetMapping("/sayHello")
