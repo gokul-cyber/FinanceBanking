@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="FinanceMe UI smoke suite"><test name="FinanceMe API smoke"><classes><class name="com.financeme.smoke.FinanceMeSmokeTest"/></classes></test></suite>

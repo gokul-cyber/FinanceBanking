@@ -1,0 +1,22 @@
+- name: Configure FinanceMe servers
+  hosts: all
+  become: true
+  tasks:
+    - name: Install Java runtime and Docker
+      apt:
+        name:
+          - openjdk-17-jre-headless
+          - docker.io
+        state: present
+        update_cache: true
+    - name: Enable Docker
+      service:
+        name: docker
+        state: started
+        enabled: true
+    - name: Create application directory
+      file:
+        path: /opt/financeme
+        state: directory
+        owner: ubuntu
+        mode: '0755'

@@ -1,0 +1,4 @@
+com\financeme\account\AccountController.class
+com\financeme\account\AccountRepository.class
+com\financeme\FinanceMeApplication.class
+com\financeme\account\Account.class
