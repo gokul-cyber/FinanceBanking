@@ -1,5 +1,6 @@
 pipeline {
     agent any
+    triggers { pollSCM('H/5 * * * *') }
     stages {
         stage('Checkout') {
             steps { checkout scm }
@@ -10,7 +11,7 @@ pipeline {
         }
         stage('Package') {
             steps { sh 'mvn -B package -DskipTests' }
-            post { success { archiveArtifacts artifacts: 'target/*.jar', fingerprint: true } }
+            post { success { archiveArtifacts artifacts: 'target/*.war', fingerprint: true } }
         }
         stage('Build Docker image') {
             steps { sh 'docker build -t financeme:${BUILD_NUMBER} .' }
