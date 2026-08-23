@@ -1,9 +1,5 @@
 pipeline {
-    agent { label 'ubuntu-maven' }
-    tools {
-        jdk 'jdk17'
-        maven 'maven3'
-    }
+    agent any
     stages {
         stage('Checkout') {
             steps { checkout scm }
