@@ -6,7 +6,7 @@ pipeline {
         }
         stage('Test') {
             steps { sh 'mvn -B clean test' }
-            post { always { junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml' } }
+            post { always { archiveArtifacts artifacts: 'target/surefire-reports/*.xml', allowEmptyArchive: true } }
         }
         stage('Package') {
             steps { sh 'mvn -B package -DskipTests' }
