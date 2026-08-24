@@ -80,7 +80,7 @@ public class AccountController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping("/deletePolicy/{accountNo}")
+    @DeleteMapping("/deleteAccount/{accountNo}")
     public ResponseEntity<Void> deletePolicy(@PathVariable Long accountNo) {
         if (!repository.existsById(accountNo)) {
             return ResponseEntity.notFound().build();

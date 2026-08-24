@@ -1,4 +1,10 @@
 target/
+*.pem
+*.tfplan
+*.tfstate
+*.tfstate.*
+.terraform/
+*.tar
 test-output/
 .idea/
 .vscode/

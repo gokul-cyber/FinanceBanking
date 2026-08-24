@@ -1,0 +1,42 @@
+{
+  "title": "FinanceMe Server Monitoring",
+  "schemaVersion": 39,
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "CPU Utilization",
+      "targets": [{"expr": "100 * (1 - avg by (instance) (rate(node_cpu_seconds_total{mode=\"idle\"}[5m])))"}],
+      "fieldConfig": {"defaults": {"unit": "percent"}}
+    },
+    {
+      "type": "timeseries",
+      "title": "Memory Utilization",
+      "targets": [{"expr": "100 * (1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)"}],
+      "fieldConfig": {"defaults": {"unit": "percent"}}
+    },
+    {
+      "type": "timeseries",
+      "title": "Disk Space Utilization",
+      "targets": [{"expr": "100 * (1 - node_filesystem_avail_bytes{fstype!~\"tmpfs|overlay\"} / node_filesystem_size_bytes{fstype!~\"tmpfs|overlay\"})"}],
+      "fieldConfig": {"defaults": {"unit": "percent"}}
+    },
+    {
+      "type": "stat",
+      "title": "Available Memory",
+      "targets": [{"expr": "node_memory_MemAvailable_bytes / 1024 / 1024 / 1024"}],
+      "fieldConfig": {"defaults": {"unit": "decgbytes"}}
+    },
+    {
+      "type": "timeseries",
+      "title": "Container CPU Usage",
+      "targets": [{"expr": "sum by (name) (rate(container_cpu_usage_seconds_total{name!=\"\"}[5m]))"}],
+      "fieldConfig": {"defaults": {"unit": "percentunit"}}
+    },
+    {
+      "type": "timeseries",
+      "title": "Container Memory Usage",
+      "targets": [{"expr": "container_memory_usage_bytes{name!=\"\"}"}],
+      "fieldConfig": {"defaults": {"unit": "bytes"}}
+    }
+  ]
+}

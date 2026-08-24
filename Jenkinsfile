@@ -14,16 +14,16 @@ pipeline {
             post { success { archiveArtifacts artifacts: 'target/*.war', fingerprint: true } }
         }
         stage('Build Docker image') {
-            steps { sh 'docker build -t financeme:${BUILD_NUMBER} .' }
+            steps { sh 'docker build -t medicure:${BUILD_NUMBER} .' }
         }
         stage('Deploy to test') {
-            steps { sh 'docker stop financeme-test || true; docker rm financeme-test || true; docker run -d --name financeme-test -p 8090:8080 financeme:${BUILD_NUMBER}' }
+            steps { sh 'docker stop medicure-test || true; docker rm medicure-test || true; docker run -d --name medicure-test -p 8090:8080 medicure:${BUILD_NUMBER}' }
         }
         stage('Approve production deployment') {
             steps { input message: 'Deploy this verified build to production?', ok: 'Deploy' }
         }
         stage('Deploy to production') {
-            steps { sh 'docker stop financeme-prod || true; docker rm financeme-prod || true; docker run -d --name financeme-prod -p 8091:8080 financeme:${BUILD_NUMBER}' }
+            steps { sh 'docker stop medicure-prod || true; docker rm medicure-prod || true; docker run -d --name medicure-prod -p 8091:8080 medicure:${BUILD_NUMBER}' }
         }
     }
 }

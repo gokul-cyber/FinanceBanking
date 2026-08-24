@@ -2,11 +2,11 @@ global:
   scrape_interval: 15s
 
 scrape_configs:
-  - job_name: financeme-test
+  - job_name: jenkins-host
     static_configs:
-      - targets: ["TEST_SERVER_IP:9100"]
-        labels: { environment: test }
-  - job_name: financeme-prod
+      - targets: ["node-exporter:9100"]
+        labels: { environment: lab }
+  - job_name: containers
     static_configs:
-      - targets: ["PROD_SERVER_IP:9100"]
-        labels: { environment: prod }
+      - targets: ["cadvisor:8080"]
+        labels: { environment: lab }

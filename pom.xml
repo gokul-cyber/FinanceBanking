@@ -10,12 +10,12 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.financeme</groupId>
-    <artifactId>finance-me</artifactId>
+    <groupId>com.medicure</groupId>
+    <artifactId>medicure</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>FinanceMe</name>
-    <description>FinanceMe banking account microservice</description>
+    <name>Medicure Healthcare Doctor Service</name>
+    <description>Medicure healthcare doctor microservice</description>
 
     <properties>
         <java.version>17</java.version>
